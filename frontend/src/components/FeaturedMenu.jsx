@@ -28,22 +28,23 @@ function FeaturedMenu() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Desktop default
+    slidesToShow: 4, // Desktop
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // Tablet
         settings: {
-          slidesToShow: 2, // Tablet
+          slidesToShow: 2,
+          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 600, // MOBILE BREAKPOINT
+        breakpoint: 768, // Mobile
         settings: {
           slidesToShow: 1, // <--- CHANGE THIS TO 1
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "10px",
+          centerPadding: "20px", // Gives a little peek of the next card
         },
       },
     ],

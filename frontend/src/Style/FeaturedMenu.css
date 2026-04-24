@@ -19,19 +19,19 @@
   margin-bottom: 1.8rem;
 }
 
+/* Update the base card style to be more flexible */
 .featured-menu .menu-card {
   background-color: #fff;
   border-radius: 15px;
-  width: 220px;
+  width: 220px; /* Default for desktop */
   padding: 1rem;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  margin: 0 auto; /* Centers the card in the slide */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   border: 1px solid #ffcc00;
+  box-sizing: border-box; /* Important for padding */
 }
 
 .featured-menu .menu-card:hover {
@@ -185,28 +185,19 @@
 
 /* Mobile Screens (under 768px) */
 @media (max-width: 768px) {
-  .featured-menu {
-    padding: 2rem 1rem; /* Less side padding on small screens */
+  .featured-menu .menu-card {
+    width: 280px !important; /* Forces the card to be wide on mobile */
+    min-height: 380px; /* Gives it enough height */
+  }
+
+  .featured-menu .menu-card img {
+    width: 100% !important;
+    height: 220px !important; /* Makes the image big and visible */
+    object-fit: cover;
   }
 
   .featured-menu h2 {
-    font-size: 1.8rem; /* Smaller title */
-  }
-
-  /* Hide arrows on mobile to give more space for the content, 
-     users usually swipe on mobile anyway */
-  .featured-menu .slick-prev,
-  .featured-menu .slick-next {
-    display: none !important;
-  }
-
-  .featured-menu .carousel-container {
-    padding: 0 10px;
-    width: 100%;
-  }
-
-  .menu-card img {
-    height: 180px; /* Even shorter images for mobile */
+    font-size: 1.8rem;
   }
 }
 
