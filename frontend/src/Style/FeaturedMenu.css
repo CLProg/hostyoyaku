@@ -233,14 +233,17 @@
 }
 
 @media (max-width: 600px) {
+  /* This makes the card take the full width of the slider */
   .featured-menu .menu-card {
-    width: 90% !important; /* Let the card grow to fit the screen */
+    width: 100% !important;
+    max-width: 300px; /* Adjust this to make the card wider/narrower */
     margin: 0 auto;
+    min-height: 350px; /* Gives the card more height so it isn't squashed */
   }
 
   .featured-menu .menu-card img {
-    width: 100%; /* Make image fill the card */
-    height: 200px;
+    width: 100% !important;
+    height: 200px !important;
     object-fit: cover;
   }
 }

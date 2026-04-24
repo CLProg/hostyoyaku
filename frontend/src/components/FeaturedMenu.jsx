@@ -26,16 +26,25 @@ function FeaturedMenu() {
 
   const settings = {
     dots: true,
-    arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4, // Desktop default
     slidesToScroll: 1,
-    autoplay: true,
     responsive: [
       {
-        breakpoint: 768,
-        settings: { slidesToShow: 1, arrows: false, dots: true },
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2, // Tablet
+        },
+      },
+      {
+        breakpoint: 600, // MOBILE BREAKPOINT
+        settings: {
+          slidesToShow: 1, // <--- CHANGE THIS TO 1
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "10px",
+        },
       },
     ],
   };
