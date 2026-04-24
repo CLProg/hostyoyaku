@@ -1,4 +1,4 @@
-/* --- YOUR ORIGINAL STYLES (NO CHANGES) --- */
+/* --- YOUR ORIGINAL STYLES (NO CHANGES TO DESIGN) --- */
 .featured-menu {
   padding: 3rem 2rem;
   text-align: center;
@@ -19,19 +19,18 @@
   margin-bottom: 1.8rem;
 }
 
-/* Update the base card style to be more flexible */
 .featured-menu .menu-card {
   background-color: #fff;
   border-radius: 15px;
-  width: 220px; /* Default for desktop */
+  width: 220px;
   padding: 1rem;
-  margin: 0 auto; /* Centers the card in the slide */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   border: 1px solid #ffcc00;
-  box-sizing: border-box; /* Important for padding */
+  box-sizing: border-box;
 }
 
 .featured-menu .menu-card:hover {
@@ -132,91 +131,53 @@
   align-items: center;
 }
 
-.carousel-container {
-  width: 95%;
-  max-width: 1200px;
-  margin: 0 auto 30px auto;
-  display: block;
-}
+/* --- THE BUG FIX: RESPONSIVE OVERRIDES --- */
 
-.carousel-container .slick-track {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-card-wrapper {
-  padding: 10px;
-}
-
-.menu-card {
-  margin: 0 auto;
-  background-color: #1a1a1a;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.menu-card img {
-  width: 100%;
-  height: 250px;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-/* --- UPDATED RESPONSIVE SECTION TO FIX BUG --- */
-
-/* Mobile Screens (Under 768px) */
+/* Tablet & Mobile Breakpoint */
 @media (max-width: 768px) {
-  /* Force the slide container to take full width to prevent squashing */
-  .featured-menu .carousel-container .slick-slide {
-    width: 100% !important;
+  /* Force the Carousel slide container to be full width */
+  .featured-menu .slick-slide {
+    width: 100% !important; /* This ensures ONLY 1 card is shown */
+    display: flex !important;
+    justify-content: center;
   }
 
+  /* Adjust the card inside the slide */
   .featured-menu .menu-card {
-    width: 90% !important; /* One card takes up 90% of screen */
-    max-width: 320px;
-    min-height: auto;
+    width: 85% !important; /* Card width relative to the screen */
+    max-width: 300px;
+    min-height: 380px;
     margin: 0 auto;
     padding: 1.5rem;
+    flex-shrink: 0; /* Prevents squashing seen in your image */
   }
 
   .featured-menu .menu-card img {
     width: 100% !important;
-    height: 200px !important; /* Ensures image is tall and visible */
+    height: 220px !important;
     object-fit: cover;
   }
 
-  .featured-menu h2 {
-    font-size: 1.8rem;
-  }
-
-  /* Hide arrows on mobile to save space */
+  /* Optional: Hide arrows on mobile to prevent overlap with the card */
   .featured-menu .slick-prev,
   .featured-menu .slick-next {
     display: none !important;
   }
-}
-
-/* Small Phone Screens (Under 480px) */
-@media (max-width: 480px) {
-  .featured-menu {
-    padding: 2rem 1rem;
-  }
 
   .featured-menu .carousel-container {
-    padding: 0; /* Remove side padding on very small screens */
+    padding: 0; /* Use full width for mobile */
+    width: 100%;
+  }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+  .featured-menu h2 {
+    font-size: 1.8rem;
   }
 
   .featured-menu .menu-card {
-    width: 100% !important;
-    max-width: 280px;
+    width: 90% !important; /* Slightly wider card for very small screens */
+    min-height: 350px;
   }
 }
