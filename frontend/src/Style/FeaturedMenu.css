@@ -210,18 +210,25 @@
   }
 }
 
-/* Very Small Screens (under 480px) */
 @media (max-width: 480px) {
-  .featured-menu h2 {
-    font-size: 1.5rem;
+  /* Make the card take up most of the screen width */
+  .featured-menu .menu-card {
+    width: 280px !important; /* Adjust this to your liking */
+    margin: 10px auto;
+    padding: 1.5rem;
   }
 
-  .menu-card {
-    padding: 15px;
+  /* Fix the image height so it's not a tiny sliver */
+  .featured-menu .menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
-  .featured-menu .menu-card span {
-    font-size: 0.9rem; /* Smaller text for narrow phones */
+  /* Hide the side arrows on mobile so they don't block the card */
+  .featured-menu .slick-prev,
+  .featured-menu .slick-next {
+    display: none !important;
   }
 }
 
