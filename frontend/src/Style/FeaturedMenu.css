@@ -224,3 +224,16 @@
     font-size: 0.9rem; /* Smaller text for narrow phones */
   }
 }
+
+@media (max-width: 600px) {
+  .featured-menu .menu-card {
+    width: 90% !important; /* Let the card grow to fit the screen */
+    margin: 0 auto;
+  }
+
+  .featured-menu .menu-card img {
+    width: 100%; /* Make image fill the card */
+    height: 200px;
+    object-fit: cover;
+  }
+}
