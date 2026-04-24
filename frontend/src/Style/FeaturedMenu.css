@@ -171,70 +171,52 @@
   margin-bottom: 10px;
 }
 
-/* --- ADDED RESPONSIVE UPDATES --- */
+/* --- UPDATED RESPONSIVE SECTION TO FIX BUG --- */
 
-/* Tablet Screens (under 1024px) */
-@media (max-width: 1024px) {
-  .featured-menu .carousel-container {
-    padding: 0 30px;
-  }
-  .menu-card img {
-    height: 200px; /* Slightly shorter images on tablets */
-  }
-}
-
-/* Mobile Screens (under 768px) */
+/* Mobile Screens (Under 768px) */
 @media (max-width: 768px) {
+  /* Force the slide container to take full width to prevent squashing */
+  .featured-menu .carousel-container .slick-slide {
+    width: 100% !important;
+  }
+
   .featured-menu .menu-card {
-    width: 280px !important; /* Forces the card to be wide on mobile */
-    min-height: 380px; /* Gives it enough height */
+    width: 90% !important; /* One card takes up 90% of screen */
+    max-width: 320px;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 1.5rem;
   }
 
   .featured-menu .menu-card img {
     width: 100% !important;
-    height: 220px !important; /* Makes the image big and visible */
+    height: 200px !important; /* Ensures image is tall and visible */
     object-fit: cover;
   }
 
   .featured-menu h2 {
     font-size: 1.8rem;
   }
-}
 
-@media (max-width: 480px) {
-  /* Make the card take up most of the screen width */
-  .featured-menu .menu-card {
-    width: 280px !important; /* Adjust this to your liking */
-    margin: 10px auto;
-    padding: 1.5rem;
-  }
-
-  /* Fix the image height so it's not a tiny sliver */
-  .featured-menu .menu-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  /* Hide the side arrows on mobile so they don't block the card */
+  /* Hide arrows on mobile to save space */
   .featured-menu .slick-prev,
   .featured-menu .slick-next {
     display: none !important;
   }
 }
 
-@media (max-width: 600px) {
-  /* This makes the card take the full width of the slider */
-  .featured-menu .menu-card {
-    width: 100% !important;
-    max-width: 300px; /* Adjust this to make the card wider/narrower */
-    margin: 0 auto;
-    min-height: 350px; /* Gives the card more height so it isn't squashed */
+/* Small Phone Screens (Under 480px) */
+@media (max-width: 480px) {
+  .featured-menu {
+    padding: 2rem 1rem;
   }
 
-  .featured-menu .menu-card img {
+  .featured-menu .carousel-container {
+    padding: 0; /* Remove side padding on very small screens */
+  }
+
+  .featured-menu .menu-card {
     width: 100% !important;
-    height: 200px !important;
-    object-fit: cover;
+    max-width: 280px;
   }
 }
