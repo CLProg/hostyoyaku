@@ -39,7 +39,7 @@ const MenuModal = ({
       try {
         setLoading(true);
         const res = await axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products"`,
+          `${import.meta.env.VITE_APP_URL}/api/products"`,
         );
 
         setItems(res.data);
@@ -174,7 +174,7 @@ const MenuModal = ({
                     <img
                       src={
                         item.image_url
-                          ? `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`
+                          ? `${import.meta.env.VITE_APP_URL}${item.image_url}`
                           : "https://placehold.co/300"
                       }
                       alt={item.name}

@@ -20,7 +20,7 @@ function ReviewsSection() {
   const fetchReviews = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reviews`,
+        `${import.meta.env.VITE_APP_URL}/api/reviews`,
       );
       setReviews(res.data);
     } catch (err) {
@@ -33,7 +33,7 @@ function ReviewsSection() {
     if (!token) return;
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reviews/eligibility`,
+        `${import.meta.env.VITE_APP_URL}/api/reviews/eligibility`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -49,7 +49,7 @@ function ReviewsSection() {
     const token = localStorage.getItem("token");
     try {
       await axios.post(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reviews`,
+        `${import.meta.env.VITE_APP_URL}/api/reviews`,
         { rating, comment },
         {
           headers: { Authorization: `Bearer ${token}` },

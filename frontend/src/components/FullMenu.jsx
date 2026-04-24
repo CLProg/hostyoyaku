@@ -16,7 +16,7 @@ function FullMenu() {
     const fetchAllItems = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+          `${import.meta.env.VITE_APP_URL}/api/products`,
         );
         setItems(res.data);
         setFilteredItems(res.data);
@@ -85,7 +85,7 @@ function FullMenu() {
               <img
                 src={
                   item.image_url
-                    ? `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`
+                    ? `${import.meta.env.VITE_APP_URL}${item.image_url}`
                     : "https://placehold.co/150"
                 }
                 alt={item.name}

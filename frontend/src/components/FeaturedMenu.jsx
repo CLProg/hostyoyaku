@@ -14,7 +14,7 @@ function FeaturedMenu() {
     const fetchFeatured = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/featured`,
+          `${import.meta.env.VITE_APP_URL}/api/products/featured`,
         );
         setFeaturedItems(res.data);
       } catch (err) {
