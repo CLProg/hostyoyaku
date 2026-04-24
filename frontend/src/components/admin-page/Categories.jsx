@@ -18,7 +18,9 @@ function Categories() {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/categories");
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories`,
+      );
       // Map database columns (category_id, name, description)
       const mappedData = response.data.map((cat) => ({
         id: cat.category_id,
@@ -42,10 +44,13 @@ function Categories() {
   const handleAddCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/categories", {
-        name: newCategory.name,
-        description: newCategory.description,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories`,
+        {
+          name: newCategory.name,
+          description: newCategory.description,
+        },
+      );
 
       fetchCategories(); // Refresh list
 
@@ -69,7 +74,9 @@ function Categories() {
       )
     ) {
       try {
-        await axios.delete(`http://localhost:5000/api/categories/${id}`);
+        await axios.delete(
+          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories/${id}`,
+        );
         setCategories(categories.filter((c) => c.id !== id));
       } catch (err) {
         alert("Error deleting category. Check if products are still using it.");
@@ -144,7 +151,7 @@ function Categories() {
       {/* --- ADD CATEGORY SIDE DRAWER --- */}
       <div
         className="offcanvas offcanvas-end border-0 shadow" // Slides from right
-        tabIndex="-1" 
+        tabIndex="-1"
         id="addCategoryDrawer"
         aria-labelledby="addCategoryDrawerLabel"
         style={{ width: "400px" }} // Categories usually need less width than inventory

@@ -12,7 +12,7 @@ import "../../Style/KitchenPage.css";
 import { io } from "socket.io-client";
 
 // Initialize socket connection to the new port 5000
-const socket = io("http://localhost:5000");
+const socket = io(`${import.meta.env.VITE_APP_URL || "http://localhost:5000"}`);
 
 const INITIAL_ORDERS = [];
 
@@ -120,8 +120,8 @@ const KitchenPage = () => {
   useEffect(() => {
     // Listen for real-time orders from the backend
     socket.on("new_order", (incomingOrder) => {
-      setOrders(prevOrders => {
-        const exists = prevOrders.find(o => o.id === incomingOrder.id);
+      setOrders((prevOrders) => {
+        const exists = prevOrders.find((o) => o.id === incomingOrder.id);
         if (exists) return prevOrders;
         return [incomingOrder, ...prevOrders];
       });

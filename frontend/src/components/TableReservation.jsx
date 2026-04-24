@@ -162,7 +162,7 @@ export default function TableReservation({ onClose, onSuccess }) {
       if (userId) {
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/reservations/user-active/${userId}`,
+            `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reservations/user-active/${userId}`,
           );
           setHasActiveReservation(res.data.hasActive);
         } catch (err) {
@@ -178,7 +178,7 @@ export default function TableReservation({ onClose, onSuccess }) {
       if (resDate && startTime && endTime) {
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/reservations/table-statuses`,
+            `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reservations/table-statuses`,
             {
               params: { date: resDate, startTime, endTime },
             },
@@ -197,7 +197,7 @@ export default function TableReservation({ onClose, onSuccess }) {
       if (selectedId && resDate) {
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/reservations/table-schedule`,
+            `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reservations/table-schedule`,
             {
               params: { tableId: selectedId, date: resDate },
             },
@@ -214,7 +214,9 @@ export default function TableReservation({ onClose, onSuccess }) {
   }, [selectedId, resDate]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/address/municipalities")
+    fetch(
+      `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/address/municipalities`,
+    )
       .then((res) => res.json())
       .then((data) =>
         setMunicipalities(Array.isArray(data) ? data : data.data || []),
@@ -225,7 +227,7 @@ export default function TableReservation({ onClose, onSuccess }) {
   useEffect(() => {
     if (selectedMunicipality) {
       fetch(
-        `http://localhost:5000/api/address/barangays/${selectedMunicipality}`,
+        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/address/barangays/${selectedMunicipality}`,
       )
         .then((res) => res.json())
         .then((data) => setBarangays(Array.isArray(data) ? data : []))
@@ -370,7 +372,7 @@ export default function TableReservation({ onClose, onSuccess }) {
       data.append("selectedItems", JSON.stringify(selectedItems));
 
       const response = await axios.post(
-        "http://localhost:5000/api/reservations/table",
+        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reservations/table"`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

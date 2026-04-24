@@ -15,7 +15,9 @@ function FullMenu() {
   useEffect(() => {
     const fetchAllItems = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(
+          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+        );
         setItems(res.data);
         setFilteredItems(res.data);
 
@@ -75,7 +77,7 @@ function FullMenu() {
           </button>
         ))}
       </div>
-      
+
       <div className="menu-grid-compact">
         {filteredItems.map((item) => (
           <div key={item.item_id || item.id} className="small-menu-card">
@@ -83,7 +85,7 @@ function FullMenu() {
               <img
                 src={
                   item.image_url
-                    ? `http://localhost:5000${item.image_url}`
+                    ? `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`
                     : "https://placehold.co/150"
                 }
                 alt={item.name}

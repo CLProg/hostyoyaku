@@ -88,7 +88,9 @@ const KioskReservationMenu = () => {
       setTimeLeft(5400); // Default UI display
     }
 
-    fetch("http://localhost:5000/api/products")
+    fetch(
+      `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+    )
       .then((res) => res.json())
       .then((data) => {
         const grouped = data.reduce((acc, item) => {
@@ -97,7 +99,7 @@ const KioskReservationMenu = () => {
           const img = item.image_url || "";
           const finalImg = img.startsWith("http")
             ? img
-            : `http://localhost:5000${img.startsWith("/") ? "" : "/"}${img}`;
+            : `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${img.startsWith("/") ? "" : "/"}${img}`;
           acc[cat].push({ id: item.item_id, name: item.name, image: finalImg });
           return acc;
         }, {});

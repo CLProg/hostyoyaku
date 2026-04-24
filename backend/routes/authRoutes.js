@@ -19,7 +19,6 @@ router.post("/signup", authController.signup);
 router.post("/verify-otp", authController.verifyOTP);
 
 // --- Reservation OTP Routes ---
-// These match: axios.post("http://localhost:5000/api/otp/send", ...)
 router.post("/otp/send", authController.sendReservationOTP);
 router.post("/otp/verify", authController.verifyReservationOTP);
 

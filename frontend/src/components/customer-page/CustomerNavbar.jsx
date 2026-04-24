@@ -15,9 +15,12 @@ function CustomerNavbar() {
         const token = localStorage.getItem("token");
         if (!token) return; // No token, user not logged in
 
-        const res = await axios.get("http://localhost:5000/api/notifications", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/notifications`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         const unread = res.data.some((n) => !n.is_read);
         setHasUnread(unread);
       } catch (error) {
@@ -55,7 +58,7 @@ function CustomerNavbar() {
   };
 
   const handleNavClick = (e, item) => {
-    if(e) e.preventDefault();
+    if (e) e.preventDefault();
     closeMenu();
 
     // 1. HOME logic: Just go to /customer top

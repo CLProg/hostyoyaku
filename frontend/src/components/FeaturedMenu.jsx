@@ -13,7 +13,9 @@ function FeaturedMenu() {
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products/featured");
+        const res = await axios.get(
+          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/featured`,
+        );
         setFeaturedItems(res.data);
       } catch (err) {
         console.error(err);
@@ -30,19 +32,27 @@ function FeaturedMenu() {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    responsive: [{ breakpoint: 768, settings: { slidesToShow: 1, arrows: false,dots:true } }]
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 1, arrows: false, dots: true },
+      },
+    ],
   };
 
   return (
     <section className="featured-menu">
       <h2>FEATURED ITEMS</h2>
-      
+
       <div className="carousel-container">
         <Slider {...settings}>
           {featuredItems.map((item) => (
             <div key={item.id} className="menu-card-wrapper">
               <div className="menu-card">
-                <img src={`http://localhost:5000${item.image_url}`} alt={item.name} />
+                <img
+                  src={`${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`}
+                  alt={item.name}
+                />
                 <span>{item.name}</span>
                 <small>₱{item.price}</small>
               </div>

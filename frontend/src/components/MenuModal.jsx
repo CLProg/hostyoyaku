@@ -24,7 +24,7 @@ const MenuModal = ({
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
   const [loading, setLoading] = useState(true);
-  
+
   // Tray state for selection logic
   const [tray, setTray] = useState({});
 
@@ -38,10 +38,12 @@ const MenuModal = ({
     const fetchAllItems = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(
+          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products"`,
+        );
 
         setItems(res.data);
-        
+
         // Get unique Category Names from the data
         const uniqueNames = [
           ...new Set(res.data.map((item) => item.category_name)),
@@ -53,11 +55,11 @@ const MenuModal = ({
         // Logic to determine initial view
         if (uniqueNames.length > 0) {
           const firstCat = uniqueNames[0];
-          setActiveCategory(firstCat); 
+          setActiveCategory(firstCat);
 
           // Only show items belonging to that first category initially
           const initialFiltered = res.data.filter(
-            (item) => item.category_name === firstCat
+            (item) => item.category_name === firstCat,
           );
           setFilteredItems(initialFiltered);
         } else {
@@ -123,7 +125,7 @@ const MenuModal = ({
 
   const totalPrice = Object.values(tray).reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   if (!isOpen) return null;
@@ -172,7 +174,7 @@ const MenuModal = ({
                     <img
                       src={
                         item.image_url
-                          ? `http://localhost:5000${item.image_url}`
+                          ? `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`
                           : "https://placehold.co/300"
                       }
                       alt={item.name}
