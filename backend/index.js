@@ -27,10 +27,21 @@ const app = express();
 // Create HTTP server to wrap the express app
 const server = http.createServer(app);
 
-// Initialize Socket.io
+// Initialize Socket.io with DYNAMIC CORS
 const io = new Server(server, {
   cors: {
-    origin: "https://hostyoyaku.vercel.app",
+    origin: function (origin, callback) {
+      // This allows any Vercel URL or Localhost to connect
+      if (
+        !origin ||
+        origin.includes("vercel.app") ||
+        origin.includes("localhost")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -54,14 +65,25 @@ io.on("connection", (socket) => {
 });
 
 // --- 1. MIDDLEWARE ---
+// UPDATED DYNAMIC CORS FOR EXPRESS
 app.use(
   cors({
-    origin: "https://hostyoyaku.vercel.app", // Replace with your ACTUAL Vercel URL
+    origin: function (origin, callback) {
+      // Allows main Vercel URL, Vercel preview URLs, and localhost
+      if (
+        !origin ||
+        origin.includes("vercel.app") ||
+        origin.includes("localhost")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
 app.use(express.json({ limit: "10mb" }));
-app.use(express.json());
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // --- 2. ROUTES ---
@@ -115,16 +137,13 @@ app.get("/api/protected", protect, (req, res) => {
 });
 
 // --- 3. SERVER START & DB CHECK ---
-// Changed from app.listen to server.listen to support WebSockets
-server.listen(PORT, async () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+// Listen on 0.0.0.0 for Render compatibility
+server.listen(PORT, "0.0.0.0", async () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 
   try {
-    // 1. Get a connection
     const connection = await User.pool.getConnection();
     console.log("✅ MySQL connection pool is ready");
-
-    // 2. IMPORTANT: Release the connection back to the pool immediately!
     connection.release();
   } catch (error) {
     console.error("❌ Database pool error:", error.message);
