@@ -1,0 +1,318 @@
+/* --- Root Layout --- */
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.kiosk-page-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.gold-text {
+  color: #ffcc00;
+}
+
+/* --- Sidebar Categories (Left) --- */
+.sidebar-categories {
+  width: 250px;
+  background: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sidebar-logo h1 {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+.sidebar-logo p {
+  font-family: cursive;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cat-item {
+  background: transparent;
+  border: none;
+  color: #666;
+  padding: 20px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-item.active {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 204, 0, 0.1) 0%,
+    transparent 100%
+  );
+  color: #ffcc00;
+  border-left: 4px solid #ffcc00;
+}
+
+.cat-icon-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+/* --- Main Menu Content (Center) --- */
+.main-menu-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.active-cat-title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.flavor-selector-bar select {
+  background: #1a1a1a;
+  color: white;
+  border: 1px solid #333;
+  padding: 8px;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+/* Item Cards Grid */
+.item-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.menu-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  position: relative; /* Moved here from the duplicate block */
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  border-color: #ffcc00;
+  transform: translateY(-5px);
+}
+
+.card-img-placeholder {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #1a1a1a;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.card-info h4 {
+  margin: 10px 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.card-add-indicator {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  background: #ffcc00;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Receipt Panel (Right) --- */
+.receipt-panel {
+  width: 350px;
+  background: #0a0a0a;
+  border-left: 1px solid #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.receipt-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 10px;
+}
+
+.receipt-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.receipt-item-details {
+  display: flex;
+  gap: 10px;
+}
+.qty-circle {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.receipt-footer {
+  border-top: 1px solid #222;
+  padding-top: 20px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 15px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btn-assist, .btn-send-order {
+    border-radius: 50px;
+    padding: 12px clamp(20px, 4vw, 40px);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-assist { background: transparent; border: 2px solid #ffcc00; color: white; }
+.btn-send-order { 
+    background: #ffcc00; 
+    border: none; 
+    padding: 12px clamp(30px, 6vw, 80px);
+    box-shadow: 0 4px 15px rgba(255,204,0,0.4); 
+}
+
+/* --- Flavor Modal Styling --- */
+.flavor-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.flavor-modal-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 30px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  border: 2px solid #ffcc00;
+}
+
+.flavor-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.flavor-btn {
+  padding: 15px;
+  background: #333;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.flavor-btn:hover {
+  background: #ffcc00;
+  color: black;
+}
+
+.close-modal-btn {
+  background: transparent;
+  color: #888;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+/* Fix for sidebar layout */
+.category-sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}

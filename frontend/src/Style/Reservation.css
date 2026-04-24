@@ -1,0 +1,316 @@
+/* --- 1. LAYOUT & OVERLAY (KEEPING AS IS - DO NOT CHANGE) --- */
+.res-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999999 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  backdrop-filter: blur(3px);
+}
+
+.res-modal-content {
+  position: relative !important;
+  background-color: white !important;
+  color: black !important;
+  width: 95% !important;
+  max-width: 550px !important;
+  max-height: 90vh !important;
+  padding: 35px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10000000 !important;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* --- 2. LOGO & TITLES (DESIGN RESTORED) --- */
+.res-hangout {
+  color: #ffcc00;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 2px;
+  font-size: 28px;
+}
+
+.res-restobar {
+  font-family: serif;
+  font-style: italic;
+  margin-top: -5px;
+  color: #333;
+  font-size: 18px;
+}
+
+.res-title {
+  font-weight: 800;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  font-size: 24px;
+}
+
+/* --- 3. PROGRESS BAR (DESIGN RESTORED) --- */
+.res-progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #666;
+  font-weight: 600;
+}
+
+.res-progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.res-progress-bar-fill {
+  height: 100%;
+  background: #ffcc00;
+  border-radius: 5px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* --- 4. INPUTS & FORMS (DESIGN RESTORED) --- */
+.res-input-group,
+.res-input-container {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.res-input-group label,
+.res-input-container label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.res-input-group input,
+.res-input-container input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.res-input-group input:focus {
+  border-color: #ffcc00;
+}
+
+.res-form-row {
+  display: flex;
+  gap: 15px;
+}
+
+/* --- 5. TIME PICKER (DESIGN RESTORED) --- */
+.custom-time-picker {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  background: #fdfdfd;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.scroll-box {
+  height: 160px;
+  width: 80px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #ffcc00 transparent;
+}
+
+.time-item {
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.2s;
+  border-bottom: 1px solid #f8f8f8;
+  text-align: center;
+}
+
+.time-item.selected {
+  background: #ffcc00;
+  color: #000;
+  font-weight: 800;
+}
+
+/* --- 6. PACKAGE STYLES (DESIGN RESTORED) --- */
+.package-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.package-box {
+  flex: 1;
+  min-width: 130px; /* Wider to fit text better */
+  height: auto !important; /* Changed from 100px to fit content */
+  min-height: 150px; /* Ensures a consistent look */
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 15px; /* Smoother corners */
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s ease-in-out;
+
+  /* THIS STACKS ITEMS VERTICALLY */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.package-box.active {
+  border-color: #ffcc00;
+  background-color: #ffd400;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+}
+.pkg-img-container {
+  width: 100%;
+  height: 70px; /* Fixed height for the image area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.pkg-img-display {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Text styling */
+.pkg-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pkg-name-text {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.pkg-price-text {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Description style below the cards */
+.pkg-selection-hint {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+/* --- 7. FOOTER & BUTTONS (DESIGN RESTORED) --- */
+.res-footer {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.res-btn-back {
+  padding: 12px 40px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+.res-btn-continue {
+  padding: 12px 60px;
+  background: #ffcc00;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #000;
+}
+
+.res-btn-continue:disabled {
+  background-color: #eeeeee !important;
+  color: #999999 !important;
+  cursor: not-allowed;
+}
+
+/* --- 8. SUMMARY DETAILS (DESIGN RESTORED) --- */
+.res-summary-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.res-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.res-summary-row span {
+  color: #888;
+}
+
+.res-summary-row strong {
+  color: #222;
+  font-weight: 700;
+}
+
+/* --- 9. OTP (DESIGN RESTORED) --- */
+.otp-box {
+  width: 45px;
+  height: 55px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  outline: none;
+}
+
+.otp-box:focus {
+  border-color: #ffcc00;
+}

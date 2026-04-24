@@ -1,0 +1,274 @@
+/* --- LAYOUT & OVERLAY --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Lightened overlay for white theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: #ffffff; /* CHANGED TO WHITE */
+  color: #333; /* DARK TEXT FOR WHITE BG */
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 95%;
+  max-width: 420px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  border: 1px solid #eee; /* Lighter border */
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* --- TYPOGRAPHY & HEADERS --- */
+.modal-content h2 {
+  margin-bottom: 25px;
+  font-family: "Arial Black", sans-serif;
+  letter-spacing: 2px;
+  color: #ffcc00; /* Keep the gold accent */
+  text-transform: uppercase;
+}
+
+/* --- FORMS & INPUTS --- */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Light border for visibility on white */
+  background: #fdfdfd; /* Very light gray background */
+  color: #333; /* Dark text */
+  outline: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  border-color: #ffcc00;
+  background: #fff;
+}
+
+/* --- PASSWORD FIELD & ICON --- */
+.password-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  padding-right: 45px;
+}
+
+.password-toggle-icon,
+.password-toggle-icon-confirm {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.eye-svg,
+.eye-svg-confirm {
+  color: #aaa; /* Gray icons */
+  transition: color 0.2s;
+}
+
+.password-toggle-icon:hover .eye-svg,
+.eye-svg.active,
+.password-toggle-icon-confirm:hover .eye-svg-confirm,
+.eye-svg-confirm.active {
+  color: #ffcc00;
+}
+
+/* --- SUBMIT BUTTON --- */
+.submit-btn {
+  background: #000;
+  color: #ffcc00;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #e6b800;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  background: #e0e0e0 !important; /* Muted gray for disabled */
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* --- OTP / EMAIL VERIFICATION --- */
+.verify-desc {
+  color: #555; /* Darker gray for white bg */
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.user-email {
+  color: #d4ac0d; /* Slightly darker gold for readability on white */
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.otp-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 10px 0 25px 0;
+  width: 100%;
+}
+
+.otp-input {
+  flex: 1;
+  min-width: 35px;
+  max-width: 50px;
+  height: 55px;
+  background: #f9f9f9; /* Light background */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #333;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.otp-input:focus {
+  border-color: #ffcc00;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.2);
+}
+
+.verify-footer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* --- TEXT LINKS & SWITCHERS --- */
+.signup-text,
+.verify-footer p {
+  font-size: 14px;
+  color: #666;
+}
+
+.link-btn,
+.signup-text a,
+.resend-btn {
+  background: none;
+  border: none;
+  color: #d4ac0d; /* Darker gold */
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.link-btn:hover,
+.signup-text a:hover,
+.resend-btn:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.back-link {
+  color: #999;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.back-link:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* --- ERRORS & WARNINGS --- */
+.password-warning {
+  color: #d9534f;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+}
+
+/* --- UTILS --- */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  border: none;
+  background: none;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Container to push the link to the right */
+.forgot-password-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px; /* Adjust this to move it closer to the password field */
+  margin-bottom: 5px;
+}
+
+/* Styling the button to look like a yellow underlined link */
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: #ffcc00; /* Yellow color */
+  text-decoration: underline;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  font-weight: bold;
+}
+
+.forgot-password-link:hover {
+  color: #e6bf00; /* Slightly darker yellow on hover */
+  text-decoration: none; /* Optional: remove underline on hover */
+}
