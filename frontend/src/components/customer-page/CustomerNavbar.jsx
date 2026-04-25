@@ -16,7 +16,7 @@ function CustomerNavbar() {
         if (!token) return; // No token, user not logged in
 
         const res = await axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/notifications`,
+          `${import.meta.env.VITE_APP_URL}/api/notifications`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },

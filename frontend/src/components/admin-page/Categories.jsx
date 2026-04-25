@@ -19,7 +19,7 @@ function Categories() {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories`,
+        `${import.meta.env.VITE_APP_URL}/api/categories`,
       );
       // Map database columns (category_id, name, description)
       const mappedData = response.data.map((cat) => ({
@@ -45,7 +45,7 @@ function Categories() {
     e.preventDefault();
     try {
       await axios.post(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories`,
+        `${import.meta.env.VITE_APP_URL}/api/categories`,
         {
           name: newCategory.name,
           description: newCategory.description,
@@ -75,7 +75,7 @@ function Categories() {
     ) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories/${id}`,
+          `${import.meta.env.VITE_APP_URL}/api/categories/${id}`,
         );
         setCategories(categories.filter((c) => c.id !== id));
       } catch (err) {

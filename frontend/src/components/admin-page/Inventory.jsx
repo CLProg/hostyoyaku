@@ -26,7 +26,7 @@ function Inventory() {
   const fetchInventory = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/inventory`,
+        `${import.meta.env.VITE_APP_URL}/api/inventory`,
       );
       // Mapping the expanded database columns
       const mappedData = response.data.map((item) => ({
@@ -78,7 +78,7 @@ function Inventory() {
     e.preventDefault();
     try {
       await axios.post(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/inventory`,
+        `${import.meta.env.VITE_APP_URL}/api/inventory`,
         formattedItem,
       );
       fetchInventory(); // Refresh
@@ -104,7 +104,7 @@ function Inventory() {
     if (window.confirm("Remove this item from inventory?")) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/inventory/${id}`,
+          `${import.meta.env.VITE_APP_URL}/api/inventory/${id}`,
         );
         setInventory(inventory.filter((item) => item.id !== id));
       } catch (err) {

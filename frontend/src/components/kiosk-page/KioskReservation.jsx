@@ -19,7 +19,7 @@ const KioskReservation = () => {
     try {
       // Adjust URL/Port to match your backend index.js
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/reservations/${id}`,
+        `${import.meta.env.VITE_APP_URL}/api/reservations/${id}`,
       );
       const data = await response.json();
 

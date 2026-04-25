@@ -18,7 +18,7 @@ import OrderSummary from "./OrderSummary";
 import { io } from "socket.io-client";
 import PortalModal from "./PortalModal";
 
-const socket = io(import.meta.env.VITE_APP_URL || "http://localhost:5000");
+const socket = io(import.meta.env.VITE_APP_URL);
 
 const categoryIcons = {
   "Chicken Wings": <Drumstick />,
@@ -73,7 +73,7 @@ const KioskReservationMenu = () => {
   }, [isTimerRunning]);
 
   useEffect(() => {
-    socket = io(import.meta.env.VITE_APP_URL || "http://localhost:5000");
+    socket = io(import.meta.env.VITE_APP_URL);
 
     const savedEndTime = localStorage.getItem(TIMER_SESSION_KEY);
     if (savedEndTime) {
@@ -89,7 +89,7 @@ const KioskReservationMenu = () => {
     }
 
     fetch(
-      `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+      `${import.meta.env.VITE_APP_URL}/api/products`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -99,7 +99,7 @@ const KioskReservationMenu = () => {
           const img = item.image_url || "";
           const finalImg = img.startsWith("http")
             ? img
-            : `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${img.startsWith("/") ? "" : "/"}${img}`;
+            : `${import.meta.env.VITE_APP_URL}${img.startsWith("/") ? "" : "/"}${img}`;
           acc[cat].push({ id: item.item_id, name: item.name, image: finalImg });
           return acc;
         }, {});

@@ -104,7 +104,7 @@ const Billing = () => {
                   <tr key={p.payment_id}>
                     <td className="ps-4">
                       <img
-                        src={`${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/uploads/${p.receipt_path}`}
+                        src={`${import.meta.env.VITE_APP_URL}/uploads/${p.receipt_path}`}
                         alt="Receipt"
                         style={{
                           width: "50px",
@@ -282,12 +282,12 @@ const Billing = () => {
                   Uploaded Receipt Proof
                 </label>
                 <a
-                  href={`${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/uploads/${selectedPayment.receipt_path}`}
+                  href={`${import.meta.env.VITE_APP_URL}/uploads/${selectedPayment.receipt_path}`}
                   target="_blank"
                   rel="noreferrer"
                 >
                   <img
-                    src={`${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/uploads/${selectedPayment.receipt_path}`}
+                    src={`${import.meta.env.VITE_APP_URL}/uploads/${selectedPayment.receipt_path}`}
                     alt="Receipt"
                     className="w-100 rounded shadow-sm border"
                   />

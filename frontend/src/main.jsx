@@ -8,7 +8,7 @@ import axios from "axios";
 // --- ADD THIS SECTION ---
 // This ensures all axios calls use your Render URL automatically
 axios.defaults.baseURL =
-  import.meta.env.VITE_APP_URL || "http://localhost:5000";
+  import.meta.env.VITE_APP_URL;
 axios.defaults.withCredentials = true;
 // ------------------------
 

@@ -120,7 +120,7 @@ const KioskMenu = () => {
     const fetchMenu = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+          `${import.meta.env.VITE_APP_URL}/api/products`,
         );
         const data = await response.json();
         const grouped = data.reduce((acc, item) => {
@@ -131,7 +131,7 @@ const KioskMenu = () => {
           const fullImage = item.image_url
             ? item.image_url.startsWith("http")
               ? item.image_url
-              : `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url.startsWith("/") ? "" : "/"}${item.image_url}`
+              : `${import.meta.env.VITE_APP_URL}${item.image_url.startsWith("/") ? "" : "/"}${item.image_url}`
             : "https://via.placeholder.com/150";
 
           acc[cat].push({
@@ -175,7 +175,7 @@ const KioskMenu = () => {
       try {
         // 1. Send the order to the backend
         const response = await fetch(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/orders/place`,
+          `${import.meta.env.VITE_APP_URL}/api/orders/place`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

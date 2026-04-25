@@ -42,12 +42,12 @@ function Product() {
     try {
       setLoading(true);
       const catRes = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/categories`,
+        `${import.meta.env.VITE_APP_URL}/api/categories`,
       );
       setCategories(catRes.data);
 
       const menuRes = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+        `${import.meta.env.VITE_APP_URL}/api/products`,
       );
       setMenuItems(menuRes.data);
 
@@ -130,13 +130,13 @@ function Product() {
     try {
       if (isEditing) {
         await axios.put(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/${editId}`,
+          `${import.meta.env.VITE_APP_URL}/api/products/${editId}`,
           formData,
         );
         alert("Item updated successfully!");
       } else {
         await axios.post(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+          `${import.meta.env.VITE_APP_URL}/api/products`,
           formData,
         );
         alert("Item added successfully!");
@@ -153,7 +153,7 @@ function Product() {
     if (window.confirm("Remove this item?")) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/${id}`,
+          `${import.meta.env.VITE_APP_URL}/api/products/${id}`,
         );
         setMenuItems(menuItems.filter((item) => item.item_id !== id));
       } catch (err) {
@@ -166,7 +166,7 @@ function Product() {
     try {
       const newStatus = currentStatus === 1 ? 0 : 1;
       await axios.put(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/${id}/feature`,
+        `${import.meta.env.VITE_APP_URL}/api/products/${id}/feature`,
         {
           is_featured: newStatus,
         },
@@ -242,7 +242,7 @@ function Product() {
                       <img
                         src={
                           item.image_url
-                            ? `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}${item.image_url}`
+                            ? `${import.meta.env.VITE_APP_URL}${item.image_url}`
                             : "https://via.placeholder.com/45"
                         }
                         alt={item.name}

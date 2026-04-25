@@ -14,7 +14,7 @@ const Notifications = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/notifications`,
+        `${import.meta.env.VITE_APP_URL}/api/notifications`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -31,7 +31,7 @@ const Notifications = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/notifications/${id}/read`,
+        `${import.meta.env.VITE_APP_URL}/api/notifications/${id}/read`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -51,7 +51,7 @@ const Notifications = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/notifications/read-all`,
+        `${import.meta.env.VITE_APP_URL}/api/notifications/read-all`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

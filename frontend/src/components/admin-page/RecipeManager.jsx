@@ -26,10 +26,10 @@ function RecipeManager() {
     try {
       const [menuRes, invRes] = await Promise.all([
         axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products`,
+          `${import.meta.env.VITE_APP_URL}/api/products`,
         ),
         axios.get(
-          `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/inventory`,
+          `${import.meta.env.VITE_APP_URL}/api/inventory`,
         ),
       ]);
       setMenuItems(menuRes.data);
@@ -43,7 +43,7 @@ function RecipeManager() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/${selectedItemId}/ingredients`,
+        `${import.meta.env.VITE_APP_URL}/api/products/${selectedItemId}/ingredients`,
       );
       setCurrentRecipe(res.data);
     } catch (err) {
@@ -60,7 +60,7 @@ function RecipeManager() {
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/${selectedItemId}/ingredients`,
+        `${import.meta.env.VITE_APP_URL}/api/products/${selectedItemId}/ingredients`,
         {
           inventory_id: ingredientId,
           quantity_required: qtyNeeded,
@@ -77,7 +77,7 @@ function RecipeManager() {
     if (!window.confirm("Remove this ingredient?")) return;
     try {
       await axios.delete(
-        `${import.meta.env.VITE_APP_URL || "http://localhost:5000"}/api/products/ingredients/${recipeId}`,
+        `${import.meta.env.VITE_APP_URL}/api/products/ingredients/${recipeId}`,
       );
       fetchCurrentRecipe();
     } catch (err) {
