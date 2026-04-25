@@ -90,7 +90,7 @@ create: async (data) => {
       await conn.beginTransaction();
       const customId = generateRandomId();
 
-      const resQuery = `INSERT INTO reservations (reservation_id, user_id, first_name, last_name, email, phone, reservation_date, reservation_time, end_time, num_guests, package_name, status, receipt_path, brgy_code, allergy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const resQuery = `INSERT INTO reservations (reservation_id, user_id, first_name, last_name, email, phone, reservation_date, reservation_time, end_time, num_guests, package_name, status, receipt_path, brgy_code, allergy, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       
       const resValues = [
         customId,
@@ -108,6 +108,7 @@ create: async (data) => {
         data.receiptPath || null, // Ensure this matches the key in the controller
         data.brgyCode || null,
         data.allergy || "None",
+        data.type || "Table Reservation",
       ];
 
       await conn.execute(resQuery, resValues);
