@@ -362,7 +362,6 @@ export default function TableReservation({ onClose, onSuccess }) {
       data.append("tableIds", JSON.stringify([selectedId, ...linkedIds]));
       data.append("allergy", allergy === "Other" ? otherAllergy : allergy);
       data.append("receipt", receiptFile);
-      data.append("type", "Gcash");
       data.append("status", "Confirmed");
       data.append("packageName", productNames);
       data.append("totalAmount", orderSummary.totalOrderPrice);

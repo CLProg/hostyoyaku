@@ -97,8 +97,6 @@ const reservationController = {
     try {
       const body = req.body;
 
-      console.log("DEBUG: Creating reservation. Type value is:", body.type);
-
       // 1. Parse Table IDs if sent as stringified JSON
       const requestedTables =
         typeof body.tableIds === "string"
