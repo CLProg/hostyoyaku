@@ -214,9 +214,7 @@ export default function TableReservation({ onClose, onSuccess }) {
   }, [selectedId, resDate]);
 
   useEffect(() => {
-    fetch(
-      `${import.meta.env.VITE_APP_URL}/api/address/municipalities`,
-    )
+    fetch(`${import.meta.env.VITE_APP_URL}/api/address/municipalities`)
       .then((res) => res.json())
       .then((data) =>
         setMunicipalities(Array.isArray(data) ? data : data.data || []),
@@ -372,7 +370,7 @@ export default function TableReservation({ onClose, onSuccess }) {
       data.append("selectedItems", JSON.stringify(selectedItems));
 
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_URL}/api/reservations/table"`,
+        `${import.meta.env.VITE_APP_URL}/api/reservations/table`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

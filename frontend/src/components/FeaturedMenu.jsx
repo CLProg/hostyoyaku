@@ -60,7 +60,7 @@ function FeaturedMenu() {
             <div key={item.id} className="menu-card-wrapper">
               <div className="menu-card">
                 <img
-                  src={`${import.meta.env.VITE_APP_URL || "https://hostyoyaku.onrender.com"}${item.image_url}`}
+                  src={`${import.meta.env.VITE_APP_URL}${item.image_url}`}
                   alt={item.name}
                 />
                 <span>{item.name}</span>
