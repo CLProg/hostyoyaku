@@ -92,10 +92,12 @@ const reservationController = {
       res.status(500).json({ error: error.message });
     }
   },
- // Create a new reservation
+  // Create a new reservation
   createReservation: async (req, res) => {
     try {
       const body = req.body;
+
+      console.log("DEBUG: Creating reservation. Type value is:", body.type);
 
       // 1. Parse Table IDs if sent as stringified JSON
       const requestedTables =
@@ -104,9 +106,10 @@ const reservationController = {
           : body.tableIds;
 
       // 2. Parse Selected Items (THIS WAS THE MISSING PART)
-      const items = typeof body.selectedItems === "string"
-        ? JSON.parse(body.selectedItems)
-        : (body.selectedItems || []);
+      const items =
+        typeof body.selectedItems === "string"
+          ? JSON.parse(body.selectedItems)
+          : body.selectedItems || [];
 
       // 3. Format times for DB compatibility
       const dbStart = formatTimeTo24h(body.startTime);
